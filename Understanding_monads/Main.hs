@@ -13,6 +13,17 @@ displayResult mx = maybe "There was no result" (("The result was " ++) . show) m
               
 -- | fromMaybe 0 (Just 1) - interesting example of Maybe and extracting
 -- | values from Just   
-   
+
+add :: Maybe Int -> Maybe Int -> Maybe Int
+add mx my =
+  mx >>= (\x -> my >>= (\y -> return (x + y)))
+
+-- | is equivalent to the following:
+add' :: Maybe Int -> Maybe Int -> Maybe Int
+add' mx my = do
+  x <- mx
+  y <- my
+  return (x + y)
+  
 
 main = undefined
